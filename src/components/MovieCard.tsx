@@ -5,10 +5,17 @@ import FavoriteButton from './FavoriteButton';
 import { useRouter } from 'next/navigation';
 import useInfoModal from '@/hooks/useInfoModal';
 import { IoChevronDown } from "react-icons/io5";
-
+interface Movie {
+    id: string;
+    title: string;
+    description: string;
+    thumbnailUrl:string;
+    genre   :     String;
+    duration  :   String;
+}
 
 interface MovieCardProps {
-    data: Record<string, any>;
+    data: Movie;
 }
 
 const MovieCard: React.FC<MovieCardProps> = ({ data }) => {

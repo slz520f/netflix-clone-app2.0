@@ -3,6 +3,10 @@ import fs from 'fs';
 import path from 'path';
 
 // 1. 定义类型
+interface Category {
+  name: string;
+  videos: Video[];
+}
 interface Video {
   title: string;
   description: string;
@@ -37,7 +41,7 @@ async function importMovies() {
 
     // 处理数据
     const movies = categories
-      .find((cat: any) => cat.name === 'Movies')?.videos
+      .find((cat: Category) => cat.name === 'Movies')?.videos
       .map((video: Video) => ({
         title: video.title,
         description: video.description,
