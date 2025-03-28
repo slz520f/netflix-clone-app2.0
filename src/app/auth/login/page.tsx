@@ -39,15 +39,36 @@ const Auth=()=>{
    
 
     
-    const register =useCallback(async()=>{
-        try{
-            await axios.post("/api/posts/register",{email,name,password});
-            router.push("/profile");
-        }catch(error){
-            console.log(error);
-        }
+    // const register =useCallback(async()=>{
+    //     try{
+    //         await axios.post("/api/auth/register",{email,name,password});
+    //         router.push("/profile");
+    //     }catch(error){
+    //         console.log(error);
+    //     }
 
-    },[email,name,password,router])
+    // },[email,name,password,router])
+    const register = useCallback(async () => {
+        try {
+          const response = await axios.post("/api/auth/register", { email, name, password });
+          // 注册成功后调用 NextAuth 登录
+          if (response.status === 201) {
+            const signInResponse = await signIn("credentials", {
+              email,
+              password,
+              
+              callbackUrl: "/profile", // 登录后跳转的页面
+            });
+            if (signInResponse?.ok) {
+              router.push("/profile");
+            } else {
+              console.error("Login after registration failed", signInResponse?.error);
+            }
+          }
+        } catch (error) {
+          console.log(error);
+        }
+      }, [email, name, password, router]);
     
     return(
         <div className="relative h-full w-full bg-[url('/change-netflix-region.jpg')] bg-no-repeat bg-center bg-fixed bg-cover">
