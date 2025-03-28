@@ -7,6 +7,7 @@ import { useRouter } from "next/navigation";
 import { FcGoogle } from "react-icons/fc";
 import { FaGithub } from "react-icons/fa";
 import { ChangeEvent } from 'react';
+import Image from "next/image";
 
 
 
@@ -75,7 +76,7 @@ const Auth=()=>{
         <div className="relative h-full w-full bg-[url('/change-netflix-region.jpg')] bg-no-repeat bg-center bg-fixed bg-cover">
             {/* <div className="bg-black h-full w-full lg:bg-opacity-50"> */}
                 <nav className="px-12 py-5">
-                    <img src="/Netflix_Logo_RGB.png" alt="logo" className="h-12"/>
+                    <Image fill src="/Netflix_Logo_RGB.png" alt="logo" className="h-12 object-contain"/>
                     <div className="flex justify-center">
                         <div className="bg-black bg-opacity-70 px-16 py-16 self-center mt-2 lg:w-2/5 lg:max-w-md rounded-md w-full">
                             <h2 className="text-white text-4xl mb-8 font-semibold">

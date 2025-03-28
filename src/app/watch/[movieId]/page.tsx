@@ -2,7 +2,7 @@
 import { useEffect } from "react";
 import useMovie from "@/hooks/useMovie";
 import { useRouter } from "next/navigation";
-import { use } from "react"; // 必须导入 use
+import { use } from "react"; 
 import { FaArrowLeft } from "react-icons/fa";
 
 interface WatchParams {
@@ -11,7 +11,7 @@ interface WatchParams {
 
 const WatchPage = ({ params }: { params: Promise<WatchParams> }) => {
   const router = useRouter();
-  const { movieId } = use(params); // 使用 React.use() 解包 Promise
+  const { movieId } = use(params); 
   const { data, error, isLoading } = useMovie(movieId);
 
   useEffect(() => {

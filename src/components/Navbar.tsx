@@ -3,6 +3,7 @@ import MobileMenu from "./MobileMenu";
 import NavbarItem from "./NavbarItem";
 import { FiChevronDown,FiSearch,FiBell } from "react-icons/fi";
 import AccountMenu from "./AccountMenu";
+import Image from "next/image";
 const TOP_OFFSET =66;
 
 const Navbar = () => {
@@ -32,7 +33,7 @@ const Navbar = () => {
   return (
     <nav className="w-full fixed z-40">
       <div className={`px-4 md:px-16 py-6 flex flex-row items-center transition duration-500 ${showBackground?"bg-zinc-900 bg-opacity-90":""}`}>
-        <img className="h-4 lg:h-7" src="/Netflix_Logo_RGB.png" alt="Netflix Logo" />
+        <Image  fill className=" object-contain h-4 lg:h-7" src="/Netflix_Logo_RGB.png" alt="Netflix Logo" />
         <div className="flex-row ml-8 gap-7 hidden lg:flex">
           <NavbarItem label="Home" />
           <NavbarItem label="Series" />

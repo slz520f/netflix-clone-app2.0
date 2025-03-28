@@ -5,13 +5,14 @@ import FavoriteButton from './FavoriteButton';
 import { useRouter } from 'next/navigation';
 import useInfoModal from '@/hooks/useInfoModal';
 import { IoChevronDown } from "react-icons/io5";
+import Image from 'next/image';
 interface Movie {
     id: string;
     title: string;
     description: string;
     thumbnailUrl:string;
-    genre   :     String;
-    duration  :   String;
+    genre   :     string;
+    duration  :   string;
 }
 
 interface MovieCardProps {
@@ -24,7 +25,7 @@ const MovieCard: React.FC<MovieCardProps> = ({ data }) => {
     return (
         <div className="group bg-zinc-900 col-span relative h-[12vw]">
             {/* サムネイル画像 */}
-            <img 
+            <Image fill
                 className="cursor-pointer object-cover transition duration shadow-xl rounded-md group-hover:opacity-90 sm:group-hover:opacity-0 delay-300 w-full h-[12vw]" 
                 src={data.thumbnailUrl} 
                 alt="Thumbnail" 
@@ -33,7 +34,7 @@ const MovieCard: React.FC<MovieCardProps> = ({ data }) => {
             {/* ホバー時に表示される詳細情報 */}
             <div className="opacity-0 absolute top-[10%] transition duration-200 z-10 hidden sm:block delay-300 w-full scale-0 group-hover:scale-110 group-hover:-translate-y-[6vw] group-hover:translate-x-[2vw] group-hover:opacity-100">
                 {/* 拡大された画像 */}
-                <img 
+                <Image fill
                     className="cursor-pointer object-cover transition duration shadow-xl rounded-t-md w-full h-[12vw]" 
                     src={data.thumbnailUrl} 
                     alt="Thumbnail" 

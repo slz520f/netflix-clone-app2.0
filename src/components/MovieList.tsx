@@ -6,9 +6,9 @@ interface Movie {
     id: string;
     title: string;
     description: string;
-    thumbnailUrl:String;
-    genre   :     String;
-    duration  :   String;
+    thumbnailUrl:string;
+    genre   :     string;
+    duration  :   string;
 }
 interface MovieListProps {
     data: Movie[];
