@@ -2,7 +2,7 @@
   "extends": ["next/core-web-vitals"],
   "rules": {
     "@typescript-eslint/no-unused-vars": "warn",
-    "@next/next/no-img-element": "error",
+    "@next/next/no-img-element": "off",
     "react/no-unescaped-entities": "off"
   }
 }

@@ -1,6 +1,6 @@
 
 import useSWR from "swr";
-import fetcher from "@/app/lib/fetcher";
+import fetcher from "@/lib/fetcher";
 
 interface BillboardMovie {
   id:string

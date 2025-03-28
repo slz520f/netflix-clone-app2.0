@@ -9,7 +9,7 @@
 
 // export default useCurrentUser;
 // src/hooks/useCurrentUser.ts
-import fetcher from "@/app/lib/fetcher";
+import fetcher from "@/lib/fetcher";
 import useSWR from "swr";
 
 const useCurrentUser = () => {
