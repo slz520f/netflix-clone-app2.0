@@ -2,7 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import useCurrentUser from "@/hooks/useCurrentUser";
-import Image from "next/image";
+
 
 export default function Profiles() {
   const router = useRouter();
@@ -16,7 +16,7 @@ export default function Profiles() {
           <div onClick={() => router.push('/')}>
             <div className="group flex-row w-44 mx-auto">
               <div className="w-44 h-44 rounded-md flex items-center justify-center border-2 border-transparent group-hover:cursor-pointer group-hover:border-white overflow-hidden">
-                <Image fill src="/defaultblue.jpg" alt="Profile" />
+                <img src="/defaultblue.jpg" alt="Profile" />
               </div>
               <div className="mt-4 text-gray-400 text-2xl text-center group-hover:text-white">
                 {user?.name || user?.email}
