@@ -8,20 +8,21 @@ import { FaArrowLeft } from "react-icons/fa";
 interface WatchParams {
   movieId: string;
 }
-
+// 映画視聴ページのコンポーネント
 const WatchPage = ({ params }: { params: Promise<WatchParams> }) => {
   const router = useRouter();
-  const { movieId } = use(params); 
+  const { movieId } = use(params); // URLパラメータから movieId を取得
   const { data, error, isLoading } = useMovie(movieId);
 
   useEffect(() => {
+     // 動画の自動再生処理
     const video = document.querySelector('video');
     if (video && data?.videoUrl) {
-      video.muted = true;
+      video.muted = true;// 初期ミュート
       video.play().catch(e => console.log('播放失败:', e));
     }
   }, [data?.videoUrl]);
-
+// ロード中の処理
   if (isLoading) return <div className="text-white">加载中...</div>;
   if (error) return <div className="text-white">加载失败，请重试</div>;
   if (!data) return <div className="text-white">没有找到该视频</div>;

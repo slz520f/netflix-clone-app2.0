@@ -7,15 +7,15 @@ import useInfoModal from '@/hooks/useInfoModal';
 const Billboard = () => {
   const { data } = useBillboard();
   const videoRef = useRef<HTMLVideoElement>(null);
-  const { openModal } = useInfoModal(); // 这里解构 openModal
+  const { openModal } = useInfoModal(); 
 
   const handleOpenModal = useCallback(() => {
-    console.log("More Info 按钮被点击");  // 调试
+    console.log("More Info 按钮被点击");  
     if (data?.id) {
-      console.log("打开 Modal，movieId:", data.id);  // 调试
+      console.log("打开 Modal movieId:", data.id);  
       openModal(data.id);
     } else {
-      console.log("data.id 为空");  // 调试
+      console.log("data.id 为空");  
     }
   }, [openModal, data?.id]);
   

@@ -3,18 +3,19 @@
 import { useState } from "react";
 
 export default function RegisterPage() {
+   // ユーザー入力を管理するための state
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
-
+  const [loading, setLoading] = useState(false);// ローディング状態管理
+  const [error, setError] = useState("");// エラーメッセージ管理
+// 登録処理
   const handleRegister = async () => {
     setLoading(true);
     setError("");
 
     try {
-      // 调用我们在 app/api/register/route.ts 中定义的 POST API
+     
       const res = await fetch("/api/register", {
         method: "POST",
         headers: {

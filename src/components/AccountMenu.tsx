@@ -13,9 +13,9 @@ const AccountMenu: React.FC<AccountMenuProps>= ({visible})=>{
 
     const handleSignOut = async () => {
         await signOut({
-            redirect: false, // 禁用默认重定向
+            redirect: false, 
         });
-        router.push("/auth/login"); // 手动跳转到登录页
+        router.push("/auth/login"); 
     };
     if(!visible){
         return null;

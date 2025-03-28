@@ -1,58 +1,70 @@
-// import { NextResponse } from 'next/server';
-// import prisma from '../../lib/prismadb';
-// import {serverAuth} from '@/app/lib/serverAuth';
-
-
-// export async function GET() {
-//     try{
-//         await serverAuth();
-//         const movies = await prisma.movie.findMany();
-//         return NextResponse.json(movies);
-//     }catch(error){
-//         console.log(error)
-//         return NextResponse.json(
-//             { error: "Internal Server Error" },
-//             { status: 500 }
-//           );
-//     }
-// }
-// src/app/api/movies/route.ts
 import { NextResponse } from 'next/server';
 import prismadb from '@/lib/prismadb';
 import { serverAuth } from '@/lib/serverAuth';
 
+/**
+ * 映画一覧取得API
+ * GET /api/movies
+ * 戻り値: 映画オブジェクトの配列
+ */
 export async function GET() {
     try {
+        // 認証チェック（認証が必要な場合）
         await serverAuth();
+        
+        // データベースから全映画情報を取得
         const movies = await prismadb.movie.findMany();
+        
+        // 成功レスポンス
         return NextResponse.json(movies);
+        
     } catch(error) {
-        console.error('[MOVIES_GET]', error);
+        // エラーログ出力
+        console.error('[映画一覧取得エラー]', error);
+        
+        // エラーレスポンス
         return NextResponse.json(
-            { error: "Internal Server Error" },
+            { error: "サーバー内部エラーが発生しました" },
             { status: 500 }
         );
     }
 }
 
+/**
+ * 新規映画登録API
+ * POST /api/movies
+ * 必要なデータ: 映画オブジェクト（title, descriptionなど）
+ * 管理者権限が必要
+ */
 export async function POST(request: Request) {
     try {
+        // ユーザー認証と権限チェック
         const { currentUser } = await serverAuth();
         if (!currentUser) {
             return NextResponse.json(
-                { error: "Unauthorized" },
+                { error: "認証が必要です" },
                 { status: 401 }
             );
         }
 
+        // リクエストボディから映画データを取得
         const body = await request.json();
-        const movie = await prismadb.movie.create({ data: body });
         
+        // データベースに新規映画を登録
+        const movie = await prismadb.movie.create({ 
+            data: body 
+        });
+        
+        // 登録成功レスポンス
         return NextResponse.json(movie);
+        
     } catch(error) {
-        console.error('[MOVIES_POST]', error);
+        // エラーログ出力
+        console.error('[映画登録エラー]', error);
+        
+        // エラーレスポンス
         return NextResponse.json(
-            { error: "Internal Server Error" },
+            { error: "サーバー内部エラーが発生しました" },
             { status: 500 }
         );
     }

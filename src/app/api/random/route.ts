@@ -1,16 +1,16 @@
 
 import { NextResponse } from 'next/server';
-import prisma from '../../../lib/prismadb';
-import {serverAuth} from '@/lib/serverAuth';
+import prisma from '../../../lib/prismadb';// Prisma クライアント
+import {serverAuth} from '@/lib/serverAuth';// 認証関数
 
 export async function GET() {
   try {
-    await serverAuth();
+    await serverAuth();// ユーザー認証
 
-    // 方法1：使用 findMany + 随机skip (适合中小型数据集)
+    // 映画の総数を取得
     const movieCount = await prisma.movie.count();
+ // ランダムな映画を取得
     const skip = Math.floor(Math.random() * movieCount);
-    
     const [randomMovie] = await prisma.movie.findMany({
       take: 1,
       skip,
@@ -20,7 +20,7 @@ export async function GET() {
         description: true,
         videoUrl: true,
         thumbnailUrl: true,
-        // 其他需要的字段...
+       
       }
     });
 

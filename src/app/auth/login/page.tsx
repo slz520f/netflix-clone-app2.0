@@ -1,25 +1,21 @@
 "use client"
-import { useCallback, useState } from "react";
+import { useCallback, useState,ChangeEvent } from "react";
 import  Input  from "../../../components/Input";
 import axios from "axios";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { FcGoogle } from "react-icons/fc";
 import { FaGithub } from "react-icons/fa";
-import { ChangeEvent } from 'react';
-
-
-
 
 const Auth=()=>{
     const router = useRouter()
     const [email,setEmail] =useState("")
     const [name,setName]=useState("")
     const [password,setPassword] = useState("")
-    const [variant,setVariant]=useState("login")
+    const [variant,setVariant]=useState("login")// ログイン・登録の切り替え
     const toggleVariant =useCallback(()=>{
         setVariant((currentVariant)=> currentVariant==="login"?"register":"login")
-    },[]);
+    },[]); // ログイン・登録フォームの切り替え
     const login = useCallback(async () => {
         try {
             const response = await signIn("credentials", {
@@ -41,25 +37,17 @@ const Auth=()=>{
    
 
     
-    // const register =useCallback(async()=>{
-    //     try{
-    //         await axios.post("/api/auth/register",{email,name,password});
-    //         router.push("/profile");
-    //     }catch(error){
-    //         console.log(error);
-    //     }
-
-    // },[email,name,password,router])
+   
     const register = useCallback(async () => {
         try {
           const response = await axios.post("/api/auth/register", { email, name, password });
-          // 注册成功后调用 NextAuth 登录
+         
           if (response.status === 201) {
             const signInResponse = await signIn("credentials", {
               email,
               password,
               
-              callbackUrl: "/profile", // 登录后跳转的页面
+              callbackUrl: "/profile", 
             });
             if (signInResponse?.ok) {
               router.push("/profile");
@@ -74,7 +62,6 @@ const Auth=()=>{
     
     return(
         <div className="relative h-full w-full bg-[url('/change-netflix-region.jpg')] bg-no-repeat bg-center bg-fixed bg-cover">
-            {/* <div className="bg-black h-full w-full lg:bg-opacity-50"> */}
                 <nav className="px-12 py-5">
                     <img src="/Netflix_Logo_RGB.png" alt="logo" className="h-12 object-contain"/>
                     <div className="flex justify-center">
@@ -126,7 +113,6 @@ const Auth=()=>{
                         </div>
                     </div>
                 </nav>
-            {/* </div> */}
         </div>
     )
 }
