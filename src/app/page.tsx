@@ -35,7 +35,7 @@ export default function Home() {
   }
 
   if (status !== 'authenticated') {
-    return null // 已经触发跳转，短暂返回null
+    return null 
   }
 
   return (

@@ -61,10 +61,10 @@ model Movie {
   id           String   @id @default(auto()) @map("_id") @db.ObjectId
   title        String
   description  String
-  videoUrl     String    // 修正拼写
+  videoUrl     String    
   thumbnailUrl String
   genre        String
   duration     String
-  @@index([title])      // 添加搜索优化索引
-  @@fulltext([description]) // 全文搜索索引
+  @@index([title])      
+  @@fulltext([description]) 
 }
