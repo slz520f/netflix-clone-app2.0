@@ -11,7 +11,7 @@ const useInfoModal = create<ModalStoreInterface>((set) => ({
   movieId: undefined,
   isOpen: false,
   openModal: (movieId: string) => {
-    console.log("openModal 被调用 movieId:", movieId);  
+    console.log("openModal が呼び出されました movieId:", movieId);  
     set({ isOpen: true, movieId });
   },
   closeModal: () => set({ isOpen: false, movieId: undefined }),
